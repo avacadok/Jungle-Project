@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
 
-  # get 'admin/categories'
-  # get 'admin/categories/new'
+  get 'authentication/register'
+  get 'authentication/signin'
+  
   get 'about/index'
   root to: 'products#index'
 
