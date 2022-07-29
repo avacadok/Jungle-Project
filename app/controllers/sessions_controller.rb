@@ -12,8 +12,9 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       redirect_to '/'
     else
-      # If user's login doesn't work, send them back to the login form.
+      #send error msg if user enter invaild pw or email 
       flash[:error] = "Please enter a vaild username and password"
+      #send back to the login form.
       redirect_to '/signin'
     end
   end
