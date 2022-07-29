@@ -12,7 +12,8 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       redirect_to '/'
     else
-    # If user's login doesn't work, send them back to the login form.
+      # If user's login doesn't work, send them back to the login form.
+      flash[:error] = "Please enter a vaild username and password"
       redirect_to '/signin'
     end
   end
