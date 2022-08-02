@@ -12,11 +12,13 @@ RSpec.describe User, type: :model do
       expect(@user).to be_valid
     end
 
-    it "email should be unique and not case sensitive" do
+    it "email should be unique" do
       @user2 = User.create(first_name: "Ava", last_name: "K", email: "test@test.COM", password: "123456", password_confirmation: "123456")
       expect(@user2).to be_invalid
       expect(@user2.errors.full_messages).to include("Email has already been taken")
-
+    end
+    
+    it "email should not be case sensitive" do
       @user3 = User.create(first_name: "Ava", last_name: "K", email: "TEST@TEST.com", password: "123456", password_confirmation: "123456")
       expect(@user3).to be_invalid
       expect(@user3.errors.full_messages).to include("Email has already been taken")
@@ -62,7 +64,34 @@ RSpec.describe User, type: :model do
   end
 
   describe '.authenticate_with_credentials' do
-    # examples for this class method here
+    before(:each) do
+      @user = User.create(first_name: "Ava", last_name: "K", email: "123a@1.com", password: "123456", password_confirmation: "123456")
+    end
+
+    it "user pass when enter valid email and password" do
+      user = User.authenticate_with_credentials("123a@1.com", "123456")
+      expect(user).to be_present
+    end
+
+    it "user need to enter vaild email" do
+      user = User.authenticate_with_credentials("123a@.com", "123456")
+      expect(user).to be_nil
+    end
+
+    it "user need to enter vaild email" do
+      user = User.authenticate_with_credentials("123a@1.com", "123457")
+      expect(user).to be_nil
+    end
+
+    it "user pass even enter capital letter in email" do
+      user = User.authenticate_with_credentials("123A@1.com", "123456")
+      expect(user).to be_present
+    end
+
+    it "user pass even enter white space before or after email" do
+      user = User.authenticate_with_credentials(" 123A@1.com ", "123456")
+      expect(user).to be_present
+    end
   end
 
 end

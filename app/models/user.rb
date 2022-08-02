@@ -10,11 +10,13 @@ class User < ApplicationRecord
 
   def clean_email 
     if self.email != nil
-      self.email = email.downcase
+      self.email = email.strip.downcase
     end
   end
 
   def self.authenticate_with_credentials(email_address, password)
+    #email = email_address.strip.downcase
+    #^ this does not pass in the front end
     @user = User.find_by_email(email_address)
 
     if @user && @user.authenticate(password) 
