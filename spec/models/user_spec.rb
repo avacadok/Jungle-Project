@@ -52,6 +52,17 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
     end
 
+    it "password minimun length should be 6 character" do
+      @user.password = "12345"
+      expect(@user).to be_invalid
+      expect(@user.errors.full_messages).to include("Password is too short (minimum is 6 characters)")
+      
+    end
+
+  end
+
+  describe '.authenticate_with_credentials' do
+    # examples for this class method here
   end
 
 end
