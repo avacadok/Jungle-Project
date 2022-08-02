@@ -24,7 +24,6 @@ RSpec.describe Product, type: :model do
       @product.price_cents = nil
       expect(@product).to be_invalid
       expect(@product.errors.full_messages).to include("Price can't be blank")
-      p @product
     end
 
     it "product quantity should not be empty" do
