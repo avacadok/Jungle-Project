@@ -17,8 +17,7 @@ class User < ApplicationRecord
   def self.authenticate_with_credentials(email_address, password)
     #email = email_address.strip.downcase
     #^ this does not pass in the front end
-    @user = User.find_by_email(email_address)
-
+    @user = User.find_by_email(email_address.strip.downcase)
     if @user && @user.authenticate(password) 
       @user
     else
