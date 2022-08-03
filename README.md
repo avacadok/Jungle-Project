@@ -1,8 +1,17 @@
 # Jungle
 
-A mini e-commerce application built with Rails 6.1 for purposes of teaching Rails by example.
+A mini e-commerce application that allows users to purchase a variety of beautiful plants.
 
 ## Final Product
+
+### Main Page
+!["screenshot description"](https://github.com/avacadok/jungle-rails/blob/master/doc/front-page.png)
+
+### Product Detail
+!["screenshot description"](https://github.com/avacadok/jungle-rails/blob/master/doc/product-detail.png)
+
+### Shopping Cart
+!["screenshot description"](https://github.com/avacadok/jungle-rails/blob/master/doc/shopping-cart.png)
 
 ## Setup
 
